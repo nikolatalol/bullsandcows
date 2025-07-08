@@ -186,7 +186,12 @@ if algo3:
                     elif digit_index==2:
                         number_guess=number_guess[0]+number[1]+number_guess[2]
                 elif bulls:
-                    pass
+                    if digit_index==0:
+                        number_guess=number_guess[:2]+number[2]
+                    elif digit_index==1:
+                        number_guess=number_guess[:2]+number[2]
+                    elif digit_index==2:
+                        number_guess=number[0]+number_guess[1:]
         elif i==2:
             print(number_guess)
             
