@@ -135,17 +135,23 @@ if algo3:
                     bulls,cows=guess(temp_number,player_input)
                     if cows==1:
                         if digit_index==0:
+                            second_index=1
                             number_guess=number_guess[:2]+number[0]
                         elif digit_index==1:
+                            second_index=2
                             number_guess=number[1]+number_guess[1:]
                         elif digit_index==2:
+                            second_index=1
                             number_guess=number[2]+number_guess[1:]
                     elif bulls==1:
                         if digit_index==0:
+                            second_index=2
                             number_guess=number_guess[0]+number[0]+number_guess[2]
                         elif digit_index==1:
+                            second_index=0
                             number_guess=number_guess[:2]+number[1]
                         elif digit_index==2:
+                            second_index=0
                             number_guess=number_guess[0]+number[2]+number_guess[2]
                 elif bulls==1:
                     if digit_index==0:
@@ -157,17 +163,23 @@ if algo3:
                     bulls,cows=guess(temp_number,player_input)
                     if cows==1:
                         if digit_index==0:
+                            second_index=2
                             number_guess=number_guess[0]+number[2]+number_guess[2]
                         elif digit_index==1:
+                            second_index=0
                             number_guess=number_guess[:2]+number[0]
                         elif digit_index==2:
+                            second_index=0
                             number_guess=number_guess[0]+number[0]+number_guess[2]
                     elif bulls==1:
                         if digit_index==0:
+                            second_index=1
                             number_guess=number_guess[:2]+number[1]
                         elif digit_index==1:
+                            second_index=2
                             number_guess=number[2]+number_guess[1:]
                         elif digit_index==2:
+                            second_index=1
                             number_guess=number[1]+number_guess[1:]
             elif number_stat[1]==1:
                 if digit_index==0:
@@ -180,18 +192,51 @@ if algo3:
 
                 if cows==1:
                     if digit_index==0:
+                        second_index=2
                         number_guess=number_guess[0]+number[1]+number_guess[2]
                     elif digit_index==1:
+                        second_index=2
                         number_guess=number[0]+number_guess[1:]
                     elif digit_index==2:
+                        second_index=0
                         number_guess=number_guess[0]+number[1]+number_guess[2]
                 elif bulls:
                     if digit_index==0:
+                        second_index=1
                         number_guess=number_guess[:2]+number[2]
                     elif digit_index==1:
+                        second_index=0
                         number_guess=number_guess[:2]+number[2]
                     elif digit_index==2:
+                        second_index=1
                         number_guess=number[0]+number_guess[1:]
         elif i==2:
-            print(number_guess)
-            
+            if number_stat[2]==1:
+                if second_index==0:
+                    temp_number=swap(number,1,0)
+                elif second_index==1:
+                    temp_number=swap(number,0,1)
+                elif second_index==2:
+                    temp_number=swap(number,1,2)
+                bulls,cows=guess(temp_number,player_input)
+                if cows==1:
+                    if second_index==0:
+                        number_guess=number[2]+number_guess[1:]
+                    elif second_index==1:
+                        number_guess=number_guess[0]+number[2]+number_guess[2]
+                    elif second_index==2:
+                        number_guess=number_guess[:2]+number[0]
+                elif bulls==1:
+                    if second_index==0:
+                        number_guess=number[1]+number_guess[1:]
+                    elif second_index==1:
+                        number_guess=number_guess[0]+number[0]+number_guess[2]
+                    elif second_index==2:
+                        number_guess=number_guess[:2]+number[1]
+            elif number_stat[1]==1:
+                if second_index==0:
+                    number_guess=number[0]+number_guess[1:]
+                elif second_index==1:
+                    number_guess=number_guess[0]+number[1]+number_guess[2]
+                elif second_index==2:
+                    number_guess=number_guess[:2]+number[2]
