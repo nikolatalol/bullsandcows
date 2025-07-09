@@ -76,7 +76,7 @@ if algo3:
                         if cows==1:
                             digit_index=2
                             number_guess=number_guess[:2]+number[0]
-                        elif bulls==0:
+                        elif bulls==1:
                             digit_index=0
                             number_guess=number[2]+number_guess[1:]
                     elif bulls==1:
@@ -264,7 +264,7 @@ elif algo2:
                         if cows==1:
                             digit_index=2
                             number_guess=number_guess[:2]+number[0]
-                        elif bulls==0:
+                        elif bulls==1:
                             digit_index=0
                             number_guess=number[2]+number_guess[1:]
                     elif bulls==1:
@@ -401,7 +401,7 @@ elif algo2:
                         if cows==1:
                             digit_index=2
                             number_guess=number_guess[:2]+number[0]
-                        elif bulls==0:
+                        elif bulls==1:
                             digit_index=0
                             number_guess=number[2]+number_guess[1:]
                     elif bulls==1:
