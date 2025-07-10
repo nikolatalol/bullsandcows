@@ -1,16 +1,56 @@
-def guess(number1,number2):
-    number1=str(number1)
-    number2=str(number2)
-    bulls=0
-    cows=0
-    for i in range(len(number1)):
-        if number1[i] == number2[i]:
-            bulls+=1
-        elif number1[i] in number2:
-            cows+=1
+import random
+import sys
+def get_number(message):
+    while True:
+        try:
+            player_input=int(input(message))
+            if len(str(player_input))!=3:
+                continue
+            elif len(str(player_input)) != len(set(str(player_input))):
+                continue
+            elif "0" in str(player_input):
+                continue
+            break
+        except ValueError:
+            continue
+    return str(player_input)
+def make_number():
+    number_list=[]
+    for number in ['123','456','789']:
+        number_list.append(random.choice(number))
+    random.shuffle(number_list)
+    result=''.join(number_list)
+    return str(result)
+def guess(botguess=None,playernumber=None):
+    if not number_is_guessed:
+        botguess=str(botguess)
+        playernumber=str(playernumber)
+        bulls_bot=0
+        cows_bot=0
+        print("Im guessing",botguess)
+        for i in range(len(botguess)):
+            if botguess[i] == playernumber[i]:
+                bulls_bot+=1
+            elif botguess[i] in playernumber:
+                cows_bot+=1
+            else:
+                continue
+        print(f"Hmm, interesting")
+    bulls_player=0
+    cows_player=0
+    playerguess=get_number("What number do u guess? ")
+    for i in range(len(playerguess)):
+        if playerguess[i] == bot_number[i]:
+            bulls_player+=1
+        elif playerguess[i] in bot_number:
+            cows_player+=1
         else:
             continue
-    return bulls,cows
+    print(f"There are {bulls_player} bulls and {cows_player} cows in your guess")
+    if bulls_player==3:
+        sys.exit("You win!!!")
+    if not number_is_guessed:
+        return bulls_bot,cows_bot
 
 def swap(number,digit1,digit2):
     number_convert=list(number)
@@ -18,19 +58,9 @@ def swap(number,digit1,digit2):
     number="".join(number_convert)
     return number
 
-while True:
-    try:
-        player_input=int(input("Type in your secret number: "))
-        if len(str(player_input))!=3:
-            continue
-        elif len(str(player_input)) != len(set(str(player_input))):
-            continue
-        elif "0" in str(player_input):
-            continue
-        break
-    except ValueError:
-        continue
-
+player_input=get_number("Type in your secret number: ")
+bot_number=make_number()
+number_is_guessed=False
 
 algo1=algo2=algo3=algo3_check=False
 number_list=[]
@@ -566,4 +596,8 @@ elif algo1:
                 number_guess=number[2]+number_guess[1]+number[0]
             elif digit_index==2:
                 number_guess=number[1]+number[0]+number_guess[2]
-print(number_guess)
+print(f"Your number is {number_guess}")
+number_is_guessed=True
+while True:
+    guess()
+
